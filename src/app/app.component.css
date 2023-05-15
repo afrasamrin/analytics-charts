@@ -1,0 +1,83 @@
+.chart2 {
+
+    display: flex;
+    flex: 1;
+
+}
+
+.main {
+    background-color: rgba(235, 235, 235, 0.816);
+    
+}
+
+.donut,
+.bar,
+.pie,
+.page {
+    padding: 1rem;
+}
+
+.donut {
+    width: 50%;
+}
+
+.pie {
+    width: 70%;
+}
+
+.chart3 {
+    display: flex;
+    flex: 1;
+
+}
+
+h1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.chart1 {
+    width: 90rem;
+    margin-left: 5rem;
+    padding: 3rem;
+    background-color: rgb(255, 255, 255);
+
+    /* justify-content: center;
+    position: relative;
+    height: 10rem;
+    margin: auto; */
+}
+
+@media (min-width: 768px) and (max-width:992px) {
+  
+}
+
+@media (max-width: 480px)  {
+    .chart1 {
+        max-height: 30rem;
+        max-width:fit-content;
+        margin-left: 3rem;
+        padding: 0;
+    }
+    .chart2 {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .donut {
+        width: 90%;
+        margin-left: 1rem;
+    }
+    
+    .pie {
+        width: 100%;
+    }
+
+    .chart3 {
+        display: flex;
+        flex-direction: column;
+
+    }
+}
