@@ -37,10 +37,10 @@ h1 {
     text-align: center;
 }
 
-.chart1 {
-    width: 90rem;
-    margin-left: 5rem;
-    padding: 3rem;
+.chart1, .chart4{
+    width: 80rem;
+    margin-left: 2rem;
+    padding: 2rem;
     background-color: rgb(255, 255, 255);
 
     /* justify-content: center;

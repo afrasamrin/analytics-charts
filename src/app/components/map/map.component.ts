@@ -1,73 +1,80 @@
 import { Component, OnInit } from '@angular/core';
-//import { MapChart } from 'angular-highcharts';
-//import india from './india';
+import { ServiceService } from 'src/app/service/service.service';
 
 
-
+declare var google: any;
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
-//   mapChart: MapChart;
 
-//   ngOnInit() {
+
+export class MapComponent implements OnInit {
+
+  public db: any = [];
+  public mapViews: any = [];
+  public mapState: any = [];
+  tabledata: any = [];
+
+  constructor(private serviceService: ServiceService) { }
+
+
+  drawChart(): void {
+    const data = google.visualization.arrayToDataTable( this.tabledata, true)
     
-//   var data = [
-//     ['in-py', 0],
-//     ['in-ld', 1],
-//     ['in-wb', 2],
-//     ['in-or', 3],
-//     ['in-br', 4],
-//     ['in-sk', 5],
-//     ['in-ct', 6],
-//     ['in-tn', 7],
-//     ['in-mp', 8],
-//     ['in-2984', 9],
-//     ['in-ga', 10],
-//     ['in-nl', 11],
-//     ['in-mn', 12],
-//     ['in-ar', 13],
-//     ['in-mz', 14],
-//     ['in-tr', 15],
-//     ['in-3464', 16],
-//     ['in-dl', 17],
-//     ['in-hr', 18],
-//     ['in-ch', 19],
-//     ['in-hp', 20],
-//     ['in-jk', 21],
-//     ['in-kl', 22],
-//     ['in-ka', 23],
-//     ['in-dn', 24],
-//     ['in-mh', 25],
-//     ['in-as', 26],
-//     ['in-ap', 27],
-//     ['in-ml', 28],
-//     ['in-pb', 29],
-//     ['in-rj', 30],
-//     ['in-up', 31],
-//     ['in-ut', 32],
-//     ['in-jh', 33]
-// ];
-//     this.mapChart = new MapChart({
-//       chart: {
-//                 map: india
-//             },
-//     series: [{
-//         data: data,
-//         name: 'Random data',
-//         states: {
-//             hover: {
-//                 color: '#BADA55'
-//             }
-//         },
-//         dataLabels: {
-//             enabled: true,
-//             format: '{point.name}'
-//         }
-//     }]
-//     });
-//   }
+   console.log(data);
+    
+    // var count = 0;
+    // data['Wf'].map((item: any) => {
+    //   //data['Wf'].
+    //   item.c = this.tabledata[count]
+    //   count++;
+    // })
+    
+
+    const options = {
+      region: 'IN',
+      displayMode: 'regions',
+      resolution: 'provinces',
+      colorAxis: {
+        colors: ['#a2ddf1', '#54b6f7', '#4290c3', '#306a90', '#1f445d'],
+      },
+    };
+
+    const chart = new google.visualization.GeoChart(
+      document.getElementById('geoChart')
+    );
+    chart.draw(data, options);
+  }
+
+
+  ngOnInit(): void {
+
+    this.serviceService.getCharts().subscribe((data) => {
+      this.db = data;
+      console.log('MAP');
+      console.log(this.db);//connects database
+       
+     //to transforms data according to  google geo chart format
+      for (const item of this.db) {
+        this.mapViews.push(item['map'])
+        this.mapState.push(item['state'])
+      }
+
+      for (let i = 0; i < this.mapState.length; i++) {
+        this.tabledata.push([this.mapState[i]  , this.mapViews[i] ])
+      }
+      console.log(this.tabledata)
+    })
+   
+    
+    google.charts.load('current', {
+      packages: ['geochart'],
+    });
+    google.charts.setOnLoadCallback(this.drawChart.bind(this));
+  }
+
+
 }

@@ -9,23 +9,7 @@ import { ServiceService } from 'src/app/service/service.service';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent {
- visit = [ { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"},
-           { "view" : 1, "page" : "/home"}
-        ]
+
 
   pages:any=[];
   view:any=[];
@@ -38,9 +22,10 @@ export class PagesComponent {
           this.b = a;
 
           for ( const item of  this.b){
+            if( item['page'] != null){
             this.pages.push(item['page']);
             this.view.push(item['views']);
-           
+            }
           }
     //.ceil(obj.discountPercentage * obj.price - obj.price) )
 

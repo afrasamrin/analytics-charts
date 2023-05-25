@@ -15,7 +15,7 @@ import { DonutComponent } from './components/donut/donut.component';
 import { BarComponent } from './components/bar/bar.component';
 import { MapComponent } from './components/map/map.component';
 import { PagesComponent } from './components/pages/pages.component';
-//import { GoogleChartsModule } from 'angular-google-charts';
+import { GoogleChartsModule } from 'angular-google-charts';
 // import { Ng2GoogleChartsModule, GoogleChartsSettings } from 'ng2-google-charts';
 // import { GeochartComponent } from './geochart/geochart.component';
  import { HttpClientModule } from '@angular/common/http';
@@ -38,10 +38,9 @@ import { ServiceService } from './service/service.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    //HighchartsChartModule,
-    //GoogleChartsModule,
+    GoogleChartsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
     //Ng2GoogleChartsModule
   ],
   schemas: [
